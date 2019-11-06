@@ -1,0 +1,56 @@
+Followed https://forum.qt.io/topic/52546/tuto-build-qt-to-cross-compile-for-arm/2
+Build on ubuntu 16.04 container
+
+
+sudo apt-get install gcc make gcc-arm-linux-gnueabi binutils-arm-linux-gnueabi
+    2  apt-get install gcc make gcc-arm-linux-gnueabi binutils-arm-linux-gnueabi
+    3  apt-get update
+    4  apt-get upgrade
+    5  apt-get install gcc make gcc-arm-linux-gnueabi binutils-arm-linux-gnueabi
+    6  arm-linux-gnueabi-gcc --version
+    7  pwd
+    8  cd /home/qt/
+    9  ls
+   10  vi helloworld.c
+   11  apt install vim
+   12  vi helloworld.c
+   13  mkdir gcc_test
+   14  cd gcc_test/
+   15  mv ../helloworld.c ./
+   16  gcc helloworld.c -o helloworld-x86_64
+   17  ./helloworld-x86_64 
+   18  file helloworld-x86_64 
+   19  arm-linux-gnueabi-gcc helloworld.c -o helloworld-arm -static
+   20  file helloworld-arm 
+   21  apt-get install gcc make gcc-arm-linux-gnueabihf binutils-arm-linux-gnueabihf
+   22  arm-linux-gnueabihf-gcc helloworld.c -o helloworld-arm-hf -static
+   23  file helloworld-arm-hf 
+   24  file helloworld-arm
+   25  cd ..
+   26  ls
+   27  cd qt4.8/
+   28  ls
+   29  cd qt-everywhere-opensource-src-4.8.5
+   30  vi mkspecs/qws/linux-arm-gnueabi-g++/qmake.conf 
+   31  ./configure -opensource -confirm-license -prefix /usr/local/Qt-4.8.5-arm -embedded arm -little-endian -no-pch -xplatform qws/linux-arm-gnueabi-g++
+   32  ./configure -opensource -confirm-license -prefix /usr/local/Qt-4.8.5-arm -embedded arm -little-endian -no-pch -xplatform qws/linux-arm-gnueabihf-g++
+   33  ./configure -opensource -confirm-license -prefix /usr/local/Qt-4.8.5-arm -embedded arm -little-endian -no-pch -xplatform qws/linux-arm-gnueabi-g++
+   34  g++
+   35  apt install g++
+   36  ./configure -opensource -confirm-license -prefix /usr/local/Qt-4.8.5-arm -embedded arm -little-endian -no-pch -xplatform qws/linux-arm-gnueabi-g++
+   37  make -j4
+   38* arm-linux-gnueabihf-g
+   39  apt-get install g++-arm-linux-gnueabihf
+   40  make -j4
+   41  ./configure -opensource -confirm-license -prefix /usr/local/Qt-4.8.5-arm -embedded arm -little-endian -no-pch -xplatform qws/linux-arm-gnueabi-g++ nomake examples -nomake tests
+   42  make
+   43  ./configure
+   44  ./configure --help
+   45  ./configure --help | grep nomake
+   46  ./configure -opensource -confirm-license -prefix /usr/local/Qt-4.8.5-arm -embedded arm -little-endian -no-pch -xplatform qws/linux-arm-gnueabi-g++ -nomake examples -nomake tests
+   47  make confclean
+   48  ./configure -opensource -confirm-license -prefix /usr/local/Qt-4.8.5-arm -embedded arm -little-endian -no-pch -xplatform qws/linux-arm-gnueabi-g++ -nomake examples -nomake tests
+   49  make -j4
+   50  ls -l /usr/local/Qt-4.8.5-arm/
+   51  make -j4 ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+   52  make install
